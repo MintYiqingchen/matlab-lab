@@ -1,0 +1,22 @@
+G = [-1 1 0 0;
+    1 -1 0 0;
+    0 0 -1 1;
+    0 0 1 -1];
+h=[1;-1;-1;0];
+Agt=[0 0 -1 -2;
+    0 0 -4 -1;
+    0 0 -3 -4;
+    -2 -1 0 0;
+    -1 -2 0 0;
+    -1 -1 0 0];
+Agt = vertcat(Agt,eye(4));
+bgt = vertcat([-8;-12;-12;-8;-8;-5],zeros(4,1));
+
+x0=[0;0;0;0];
+f = @(x)(0.5*x'*G*x+h'*x);
+tic();
+[x_star,l_star] = contribute_set(G,h,Agt,bgt,x0,1e-12);
+toc();
+display(x_star,'minimal point');
+display(l_star,'lagrange multiplier');
+display(f(x_star),'Minimal value');
