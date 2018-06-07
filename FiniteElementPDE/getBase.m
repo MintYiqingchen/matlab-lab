@@ -11,7 +11,7 @@ for i=1:k % i-th base
     b(i)=1;
     for j=1:k % j-th row
         for m=1:k-1 % m-th col
-            A(j,m)=xxs(j)^m;
+            A(j,m)=xxs(j)^(k-m);
         end
     end
     res(i,:)=A\b;
